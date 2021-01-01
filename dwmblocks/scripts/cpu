@@ -1,5 +1,5 @@
 #! /bin/bash
 
 cpu=$(mpstat | awk '{print $4}' | tail -1)
-echo -e "$cpu% "
+echo -e "$cpu% cpu "
 

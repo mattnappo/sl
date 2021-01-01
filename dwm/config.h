@@ -12,8 +12,8 @@ static       int smartgaps          = 0;        /* 1 means no outer gap when the
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Fira Code:size=11" };
-static const char dmenufont[]       = "Fira Code:size=11";
+static const char *fonts[]          = { "Fira Code:size=12" };
+static const char dmenufont[]       = "Fira Code:size=12";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -93,6 +93,14 @@ static const char *upvolcmd[]   = { "pulseaudio-ctl", "up",   "3", NULL };
 static const char *downvolcmd[] = { "pulseaudio-ctl", "down", "3", NULL };
 static const char *mutevolcmd[] = { "pulseaudio-ctl", "mute",      NULL };
 
+static const char *screenup[]   = { "xbacklight", "+5", NULL };
+static const char *screendown[] = { "xbacklight", "-5", NULL };
+static const char *kbdup[]      = { "/home/matt/scripts/kbdup",   NULL };
+static const char *kbddown[]    = { "/home/matt/scripts/kbddown", NULL };
+// static const char *kbdup[]      = { "brightnessctl", "--device='tpacpi::kbd_backlight'", "set", "1+", NULL };
+// static const char *kbddown[]    = { "brightnessctl", "--device='tpacpi::kbd_backlight'", "set", "1-", NULL };
+static const char *stats[]      = { "/home/matt/scripts/stats", NULL };
+
 /* launching application commands */
 static const char *spawndiscord[]  = { "discord", NULL };
 static const char *spawnbrave[]    = { "browser", NULL };
@@ -125,23 +133,23 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_space,  cyclelayout,    {.i = +1 } },
 
     /* shiftview */
-	{ ControlMask|Mod1Mask,         XK_n,      shiftview,      {.i = +1 } },
-	{ ControlMask|Mod1Mask,         XK_b,      shiftview,      {.i = -1 } },
+	{ ControlMask|Mod1Mask,         XK_l,      shiftview,      {.i = +1 } },
+	{ ControlMask|Mod1Mask,         XK_h,      shiftview,      {.i = -1 } },
 
     /* vanity gaps */
 	{ MODKEY|Mod1Mask,              XK_u,      incrgaps,       {.i = +1 } }, // all
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_u,      incrgaps,       {.i = -1 } },
-	{ MODKEY|Mod1Mask,              XK_i,      incrigaps,      {.i = +1 } }, // inner
-	{ MODKEY|Mod1Mask|ShiftMask,    XK_i,      incrigaps,      {.i = -1 } },
-	{ MODKEY|Mod1Mask,              XK_o,      incrogaps,      {.i = +1 } }, // outer
-	{ MODKEY|Mod1Mask|ShiftMask,    XK_o,      incrogaps,      {.i = -1 } },
-	{ MODKEY|Mod1Mask,              XK_6,      incrihgaps,     {.i = +1 } }, // inner horiz
-	{ MODKEY|Mod1Mask|ShiftMask,    XK_6,      incrihgaps,     {.i = -1 } },
-	{ MODKEY|Mod1Mask,              XK_7,      incrivgaps,     {.i = +1 } }, // inner vert
-	{ MODKEY|Mod1Mask|ShiftMask,    XK_7,      incrivgaps,     {.i = -1 } },
-	{ MODKEY|Mod1Mask,              XK_8,      incrohgaps,     {.i = +1 } }, // outer horiz
-	{ MODKEY|Mod1Mask|ShiftMask,    XK_8,      incrohgaps,     {.i = -1 } },
-	{ MODKEY|Mod1Mask,              XK_9,      incrovgaps,     {.i = +1 } }, // outer vert
+	// { MODKEY|Mod1Mask,              XK_i,      incrigaps,      {.i = +1 } }, // inner
+	// { MODKEY|Mod1Mask|ShiftMask,    XK_i,      incrigaps,      {.i = -1 } },
+	// { MODKEY|Mod1Mask,              XK_o,      incrogaps,      {.i = +1 } }, // outer
+	// { MODKEY|Mod1Mask|ShiftMask,    XK_o,      incrogaps,      {.i = -1 } },
+	// { MODKEY|Mod1Mask,              XK_6,      incrihgaps,     {.i = +1 } }, // inner horiz
+	// { MODKEY|Mod1Mask|ShiftMask,    XK_6,      incrihgaps,     {.i = -1 } },
+	// { MODKEY|Mod1Mask,              XK_7,      incrivgaps,     {.i = +1 } }, // inner vert
+	// { MODKEY|Mod1Mask|ShiftMask,    XK_7,      incrivgaps,     {.i = -1 } },
+	// { MODKEY|Mod1Mask,              XK_8,      incrohgaps,     {.i = +1 } }, // outer horiz
+	// { MODKEY|Mod1Mask|ShiftMask,    XK_8,      incrohgaps,     {.i = -1 } },
+	// { MODKEY|Mod1Mask,              XK_9,      incrovgaps,     {.i = +1 } }, // outer vert
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_9,      incrovgaps,     {.i = -1 } },
 	{ MODKEY|Mod1Mask,              XK_0,      togglegaps,     {0} },
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },
@@ -151,8 +159,19 @@ static Key keys[] = {
 
     /* volume control */
 	// { MODKEY,                       XK_F10,    spawn,          {.v = mutevolcmd } },
-	{ MODKEY,                       XK_F11,    spawn,          {.v = downvolcmd } },
-	{ MODKEY,                       XK_F12,    spawn,          {.v = upvolcmd   } },
+	{ MODKEY,                       XK_F2,    spawn,          {.v = downvolcmd } },
+	{ MODKEY,                       XK_F3,    spawn,          {.v = upvolcmd   } },
+
+    /* screen brightness */
+	{ MODKEY,                       XK_F5,    spawn,          {.v = screendown } },
+	{ MODKEY,                       XK_F6,    spawn,          {.v = screenup   } },
+
+    /* keyboard brightness */
+	{ MODKEY|ShiftMask,             XK_F5,    spawn,          {.v = kbddown } },
+	{ MODKEY|ShiftMask,             XK_F6,    spawn,          {.v = kbdup   } },
+
+    /* brightness stats */
+	{ MODKEY,                       XK_F7,    spawn,          {.v = stats } },
 
     /* launching programs */
 	{ MODKEY,                       XK_d,      spawn,          {.v = spawndiscord } },

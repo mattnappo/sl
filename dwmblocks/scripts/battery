@@ -1,0 +1,3 @@
+#!/bin/bash
+cap="$(upower -d | grep percentage | awk 'NR==1{print $2}')"
+echo -e "$cap bat "
