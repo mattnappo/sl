@@ -171,7 +171,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_F6,    spawn,          {.v = kbdup   } },
 
     /* brightness stats */
-	{ MODKEY,                       XK_F7,    spawn,          {.v = stats } },
+	{ MODKEY|ShiftMask,             XK_S,     spawn,          {.v = stats } },
 
     /* launching programs */
 	{ MODKEY,                       XK_d,      spawn,          {.v = spawndiscord } },
