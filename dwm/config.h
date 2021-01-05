@@ -126,8 +126,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_space,  zoom,           {0} },
-	// { MODKEY|ShiftMask,             XK_space,  togglefloating, {0} }, // TEST
+	{ MODKEY,                       XK_space,  zoom,           {0} }, /* set current client to master */
+	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} }, /* snap into not floating mode */
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 
