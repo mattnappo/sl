@@ -171,13 +171,13 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_F6,    spawn,          {.v = kbdup   } },
 
     /* brightness stats */
-	{ MODKEY|ShiftMask,             XK_S,     spawn,          {.v = stats } },
+	{ MODKEY,                       XK_F7,    spawn,          {.v = stats } },
 
     /* launching programs */
-	{ MODKEY,                       XK_d,      spawn,          {.v = spawndiscord } },
-	{ MODKEY,                       XK_f,      spawn,          {.v = spawnfirefox } },
-	// { MODKEY,                       XK_f,      spawn,          {.v = spawnbrave   } },
-	{ MODKEY,                       XK_w,      spawn,          {.v = spawnwolfram } },
+	{ MODKEY,                       XK_d,      spawn,         {.v = spawndiscord } },
+	{ MODKEY,                       XK_f,      spawn,         {.v = spawnfirefox } },
+	// { MODKEY,                       XK_f,      spawn,         {.v = spawnbrave   } },
+	{ MODKEY,                       XK_w,      spawn,         {.v = spawnwolfram } },
 
     /* change monitors */
 
