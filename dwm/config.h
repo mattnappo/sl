@@ -12,13 +12,19 @@ static       int smartgaps          = 0;        /* 1 means no outer gap when the
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Fira Code:size=12" };
-static const char dmenufont[]       = "Fira Code:size=12";
+
+/* for laptop */
+// static const char *fonts[]          = { "Fira Code:size=12" };
+// static const char dmenufont[]       =   "Fira Code:size=12";
+
+/* for big pc */
+static const char *fonts[]          = { "Fira Code:size=11" };
+static const char dmenufont[]       =   "Fira Code:size=11";
+
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-
 static const char col_cyan[]        = "#005577";
 static const char col_yellow[]      = "#d79921";
 static const char col_green[]       = "#689d6a";
@@ -93,12 +99,11 @@ static const char *upvolcmd[]   = { "pulseaudio-ctl", "up",   "3", NULL };
 static const char *downvolcmd[] = { "pulseaudio-ctl", "down", "3", NULL };
 static const char *mutevolcmd[] = { "pulseaudio-ctl", "mute",      NULL };
 
+/* for laptop */
 static const char *screenup[]   = { "xbacklight", "+5", NULL };
 static const char *screendown[] = { "xbacklight", "-5", NULL };
 static const char *kbdup[]      = { "/home/matt/scripts/kbdup",   NULL };
 static const char *kbddown[]    = { "/home/matt/scripts/kbddown", NULL };
-// static const char *kbdup[]      = { "brightnessctl", "--device='tpacpi::kbd_backlight'", "set", "1+", NULL };
-// static const char *kbddown[]    = { "brightnessctl", "--device='tpacpi::kbd_backlight'", "set", "1-", NULL };
 static const char *stats[]      = { "/home/matt/scripts/stats", NULL };
 
 /* launching application commands */
@@ -106,6 +111,9 @@ static const char *spawndiscord[]  = { "discord", NULL };
 static const char *spawnbrave[]    = { "browser", NULL };
 static const char *spawnfirefox[]  = { "firefox", NULL };
 static const char *spawnwolfram[]  = { "firefox", "https://wolframalpha.com", NULL };
+
+/* for restarting, suspending to memory, shutting down */
+static const char *restartcmd[]  = { "/home/matt/scripts/restart", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -119,7 +127,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_space,  zoom,           {0} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} }, // TEST
+	// { MODKEY|ShiftMask,             XK_space,  togglefloating, {0} }, // TEST
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 
@@ -158,9 +166,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,      togglefullscr,  {0} },
 
     /* volume control */
-	// { MODKEY,                       XK_F10,    spawn,          {.v = mutevolcmd } },
 	{ MODKEY,                       XK_F2,    spawn,          {.v = downvolcmd } },
 	{ MODKEY,                       XK_F3,    spawn,          {.v = upvolcmd   } },
+	{ MODKEY,                       XK_minus, spawn,          {.v = downvolcmd } },
+	{ MODKEY,                       XK_plus,  spawn,          {.v = upvolcmd   } },
 
     /* screen brightness */
 	{ MODKEY,                       XK_F5,    spawn,          {.v = screendown } },
@@ -179,7 +188,7 @@ static Key keys[] = {
 	// { MODKEY,                       XK_f,      spawn,         {.v = spawnbrave   } },
 	{ MODKEY,                       XK_w,      spawn,         {.v = spawnwolfram } },
 
-    /* change monitors */
+	{ MODKEY|ShiftMask,             XK_s,      spawn,         {.v = restartcmd } },
 
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
