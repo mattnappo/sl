@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 5;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 
 static const unsigned int gappih    = 15;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 15;       /* vert inner gap between windows */
@@ -13,6 +13,8 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 
+static const int barpadding = 10;
+
 /* for laptop */
 // static const char *fonts[]          = { "Fira Code:size=12" };
 // static const char dmenufont[]       =   "Fira Code:size=12";
@@ -21,25 +23,26 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Fira Code:size=11" };
 static const char dmenufont[]       =   "Fira Code:size=11";
 
-static const char col_gray1[]       = "#222222";
+static const char col_gray1[]       = "#1a1c24";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
-static const char col_yellow[]      = "#d79921";
-static const char col_green[]       = "#689d6a";
+static const char col_cyan[]        = "#005577"; // Default dwm
+static const char col_pink[]        = "#ff79c6";
+static const char col_yellow[]      = "#f1fa8c";
+static const char col_highlight[]   = "#6272a4"; // dracula gray
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2   },
-	[SchemeSel]  = { col_gray4, col_green, col_yellow  },
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+	// [SchemeSel]  = { col_gray4, col_pink, col_pink  },
+	[SchemeSel]  = { col_gray4, col_highlight, col_pink },
 };
 
 /* tagging */
 // static const char *tags[] = { "∫", "∇", "δ", "∂", "∆", "∑", "ℒ","ℑ", "ℵ"}; // Ω
 // static const char *tags[] = { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-
+static const char *tags[] = { " 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "};
 
 static const Rule rules[] = {
 	/* xprop(1):
